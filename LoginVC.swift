@@ -86,6 +86,7 @@ class LoginVC: UIViewController {
     
     
     private func completeLogin() {
+        passwordTextField.text = ""
         setUIEnabled(true)
         let controller = self.storyboard?.instantiateViewControllerWithIdentifier("OTMTabController") as! UINavigationController
         presentViewController(controller, animated: true, completion: nil)
