@@ -58,7 +58,7 @@ class UdacityClient {
             }
             //print(userId)
             
-            Constants.userId = userId
+            User.userID = userId
             completionHandlerForLogin(success: true, error: nil)
             
             // end of closure
@@ -66,6 +66,54 @@ class UdacityClient {
         task.resume()
         
     }
+    
+    func getUserData() {
+        let userId = User.userID
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/users/\(userId)")!)
+        
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            
+            guard (error == nil) else {
+                print("There was an error with your request")
+                return
+            }
+            
+            guard let data = data?.subdataWithRange(NSMakeRange(5, (data?.length)! - 5)) else {
+                print("NO data was returned by the request")
+                return
+            }
+            
+            let parsedResult: AnyObject!
+            do {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            } catch {
+                print("Could not parse the data as JSON")
+                return
+            }
+            //print(parsedResult)
+            
+            guard let user = parsedResult["user"] as? [String:AnyObject] else {
+                print("Could not find user data")
+                return
+            }
+            //print(user)
+            
+            guard let lastName = user["last_name"] as? String, let firstName = user["first_name"] as? String else {
+                print("Could not get last name")
+                return
+            }
+            //print(lastName, firstName)
+            User.lastName = lastName
+            User.firstName = firstName
+            
+            // end of closure
+        }
+        task.resume()
+        
+    }
+
     
     // MARK: Shared Instance
     

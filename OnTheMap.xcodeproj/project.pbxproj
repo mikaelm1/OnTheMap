@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70489B2F1C7A126F00FC6C6F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70489B2E1C7A126F00FC6C6F /* User.swift */; };
 		706E512C1C7141320089F180 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E512B1C7141320089F180 /* AppDelegate.swift */; };
 		706E51311C7141320089F180 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 706E512F1C7141320089F180 /* Main.storyboard */; };
 		706E51331C7141320089F180 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 706E51321C7141320089F180 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		70489B2E1C7A126F00FC6C6F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		706E51281C7141320089F180 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		706E512B1C7141320089F180 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		706E51301C7141320089F180 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				706E51501C71428E0089F180 /* Clients */,
+				70489B2E1C7A126F00FC6C6F /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				706E512C1C7141320089F180 /* AppDelegate.swift in Sources */,
 				708DE5001C725F6900F720B5 /* ListTableVC.swift in Sources */,
 				708DE5061C77490500F720B5 /* Student.swift in Sources */,
+				70489B2F1C7A126F00FC6C6F /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

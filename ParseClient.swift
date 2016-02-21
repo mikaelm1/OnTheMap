@@ -61,6 +61,53 @@ class ParseClient {
         
     }
     
+    func postStudentLocation(completionHandlerForPostStudent: (success: Bool) -> Void) {
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation")!)
+        request.HTTPMethod = "POST"
+        request.addValue(Constants.Parse.applicationID, forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue(Constants.Parse.APIKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.HTTPBody = "{\"uniqueKey\": \"\(User.userID)\", \"firstName\": \"\(User.firstName)\", \"lastName\": \"\(User.lastName)\",\"mapString\": \"\(User.mapString)\", \"mediaURL\": \"\(User.mediaUrl)\",\"latitude\": \(User.latitude), \"longitude\": \(User.longitude)}".dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let task = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            
+            func sendError(error:String) {
+                print(error)
+                completionHandlerForPostStudent(success: false)
+            }
+            
+            guard (error == nil) else {
+                sendError("There was an error with the request")
+                return
+            }
+            
+            guard let data = data else {
+                sendError("Could not find any data")
+                return
+            }
+            
+            let parsedResult: AnyObject!
+            do {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            } catch {
+                sendError("Could not parse into JSON")
+                return
+            }
+            //print(parsedResult)
+            
+            guard let success = parsedResult["createdAt"] as? String else {
+                sendError("Not posted successfully")
+                return
+            }
+            //print(success)
+            completionHandlerForPostStudent(success: true)
+
+            // end of closure
+        }
+        task.resume()
+
+    }
+    
     
     // MARK: Shared Instance
     
