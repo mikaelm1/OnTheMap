@@ -34,9 +34,15 @@ class ListTableVC: UITableViewController {
                     self.tableView.reloadData()
                 })
             } else {
-                print(error)
+                self.sendAlert(error!)
             }
         }
+    }
+    
+    private func sendAlert(message: String) {
+        let controller = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+        controller.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: nil))
+        presentViewController(controller, animated: true, completion: nil)
     }
     
     private func setupButtons() {

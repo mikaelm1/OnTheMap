@@ -51,6 +51,10 @@ class MapVC: UIViewController, MKMapViewDelegate {
     }
     
     func loadStudents() {
+        
+        activityIndicator.alpha = 1.0
+        activityIndicator.startAnimating()
+        mapView.alpha = 0.5
         ParseClient.sharedInstance().getStudentLocations { (result, error) -> Void in
             
             if let students = result {
@@ -60,9 +64,18 @@ class MapVC: UIViewController, MKMapViewDelegate {
                 })
                 
             } else {
-                print(error)
+                self.sendAlert(error!)
             }
         }
+        activityIndicator.alpha = 0.0
+        activityIndicator.stopAnimating()
+        mapView.alpha = 1.0
+    }
+    
+    private func sendAlert(message: String) {
+        let controller = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+        controller.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: nil))
+        presentViewController(controller, animated: true, completion: nil)
     }
     
     // MARK: Map methods

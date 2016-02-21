@@ -13,7 +13,7 @@ class ParseClient {
     var session = NSURLSession.sharedSession()
     
     // getStudentLocations
-    func getStudentLocations(completionHandlerForStudentLocations: (result: [Student]?, error: NSError?) -> Void) {
+    func getStudentLocations(completionHandlerForStudentLocations: (result: [Student]?, error: String?) -> Void) {
         
         let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation?limit=100")!)
         
@@ -22,13 +22,18 @@ class ParseClient {
         //let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             
+            func sendError(error: String) {
+                print(error)
+                completionHandlerForStudentLocations(result: nil, error: error)
+            }
+            
             guard (error == nil) else {
-                print("There was an error with the request")
+                sendError("There was an error with the request")
                 return
             }
             
             guard let data = data else {
-                print("No data was returned")
+                sendError("No data was returned")
                 return
             }
             
@@ -36,13 +41,13 @@ class ParseClient {
             do {
                 parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
             } catch {
-                print("Unable to parse into JSON")
+                sendError("Unable to parse into JSON")
                 return
             }
             //print(parsedResult)
             
             guard let locations = parsedResult["results"] as? [[String:AnyObject]] else {
-                print("Unable to get the locations")
+                sendError("Unable to get the locations")
                 return
             }
             //print(locations)
@@ -50,13 +55,7 @@ class ParseClient {
             let students = Student.studentsFromResults(locations)
             completionHandlerForStudentLocations(result: students, error: nil)
             
-            //print(locations)
-            performUIUpdatesOnMain({ () -> Void in
-                // Set the student locations informations 
-                //self.pinLocations(locations)
-            })
-            
-            // end of closure
+        // end of closure
         }
         task.resume()
         
