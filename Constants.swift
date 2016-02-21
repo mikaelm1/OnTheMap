@@ -19,4 +19,10 @@ struct Constants {
         
     }
     
+    struct Udacity {
+        
+        static let signUpPage = "https://www.udacity.com"
+        
+    }
+    
 }

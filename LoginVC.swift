@@ -13,6 +13,8 @@ class LoginVC: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var signUpLabel: UILabel!
     
 
     override func viewDidLoad() {
@@ -26,6 +28,11 @@ class LoginVC: UIViewController {
         super.viewWillAppear(animated)
     }
 
+    @IBAction func signUpPressed(sender: AnyObject) {
+        let app = UIApplication.sharedApplication()
+        app.openURL(NSURL(string: Constants.Udacity.signUpPage)!)
+    }
+    
     @IBAction func loginPressed(sender: AnyObject) {
         if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
             sendAlert("Blank username or password")
@@ -59,15 +66,21 @@ class LoginVC: UIViewController {
         loginButton.enabled = enabled
         usernameTextField.enabled = enabled
         passwordTextField.enabled = enabled
+        signUpButton.enabled = enabled
+        signUpLabel.enabled = enabled
         
         if enabled {
             loginButton.alpha = 1.0
             usernameTextField.alpha = 1.0
             passwordTextField.alpha = 1.0
+            signUpLabel.alpha = 1.0
+            signUpButton.alpha = 1.0
         } else {
             loginButton.alpha = 0.5
             usernameTextField.alpha = 0.5
             passwordTextField.alpha = 0.5
+            signUpLabel.alpha = 0.5
+            signUpButton.alpha = 0.5
         }
     }
     

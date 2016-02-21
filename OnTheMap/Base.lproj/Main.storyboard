@@ -81,6 +81,9 @@
                                                 <state key="normal" title="   Sign Up">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="signUpPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NDi-55-kRF"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -107,6 +110,8 @@
                     <connections>
                         <outlet property="loginButton" destination="ftm-2J-9LN" id="eIz-fp-tAo"/>
                         <outlet property="passwordTextField" destination="TNw-4X-jO9" id="yMS-VS-bS2"/>
+                        <outlet property="signUpButton" destination="OJ6-2G-BrI" id="mFd-sI-iH3"/>
+                        <outlet property="signUpLabel" destination="cbu-TI-A6I" id="NoX-HQ-qKk"/>
                         <outlet property="usernameTextField" destination="wQm-P9-t27" id="rb0-c7-dXO"/>
                     </connections>
                 </viewController>
@@ -364,7 +369,6 @@
         <!--Navigation Controller-->
         <scene sceneID="yi5-oi-OXM">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rQH-Kb-tbg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="OTMTabController" id="XUm-xn-nR7" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dTk-dR-Dl2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -374,6 +378,7 @@
                         <segue destination="C5f-cn-OFG" kind="relationship" relationship="rootViewController" id="ood-O0-Ezn"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rQH-Kb-tbg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-432" y="1025"/>
         </scene>
