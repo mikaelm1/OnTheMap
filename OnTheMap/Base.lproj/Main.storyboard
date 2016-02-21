@@ -66,8 +66,26 @@
                                             <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="viM-uK-sYp"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debug text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbu-TI-A6I">
-                                        <rect key="frame" x="0.0" y="420" width="560" height="140"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="G0s-BF-QrW">
+                                        <rect key="frame" x="0.0" y="420" width="560" height="24"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Don't have an account? " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="cbu-TI-A6I">
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="24"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJ6-2G-BrI">
+                                                <rect key="frame" x="280" y="0.0" width="280" height="24"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                                <state key="normal" title="   Sign Up">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5T-gD-kpG">
+                                        <rect key="frame" x="0.0" y="454" width="560" height="106"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -87,7 +105,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="debugLabel" destination="cbu-TI-A6I" id="xBq-mA-wkA"/>
                         <outlet property="loginButton" destination="ftm-2J-9LN" id="eIz-fp-tAo"/>
                         <outlet property="passwordTextField" destination="TNw-4X-jO9" id="yMS-VS-bS2"/>
                         <outlet property="usernameTextField" destination="wQm-P9-t27" id="rb0-c7-dXO"/>
@@ -97,7 +114,7 @@
             </objects>
             <point key="canvasLocation" x="-603" y="289"/>
         </scene>
-        <!--MapVC-->
+        <!--Map-->
         <scene sceneID="7Fp-Bn-i51">
             <objects>
                 <viewController id="CNH-Vp-4ff" customClass="MapVC" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -126,20 +143,8 @@
                             <constraint firstItem="m5n-xQ-mnC" firstAttribute="top" secondItem="Ph8-0C-zyI" secondAttribute="bottom" id="rgX-5u-Bpg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="4Ad-LH-o0f">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="i1k-0T-EYR">
-                                <connections>
-                                    <action selector="refreshPressed:" destination="CNH-Vp-4ff" id="TXj-TI-sUv"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="pin" id="e77-uN-IKD">
-                                <connections>
-                                    <action selector="postInfoPressed:" destination="CNH-Vp-4ff" id="kKZ-4a-jln"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" id="rvy-hf-rKk"/>
+                    <navigationItem key="navigationItem" id="4Ad-LH-o0f"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Ss2-6G-GzW" id="tpk-yL-Ipi"/>
                         <outlet property="mapView" destination="m5n-xQ-mnC" id="vuM-VQ-Rnh"/>
@@ -147,9 +152,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vaM-dz-UcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1885" y="672"/>
+            <point key="canvasLocation" x="1266" y="753"/>
         </scene>
-        <!--List TableVC-->
+        <!--List-->
         <scene sceneID="YX1-Km-Tik">
             <objects>
                 <tableViewController id="W7b-bu-fLs" customClass="ListTableVC" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -192,24 +197,12 @@
                             <outlet property="delegate" destination="W7b-bu-fLs" id="Vxr-D3-QEa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="al2-J3-FXT">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="z4K-Ki-j8R">
-                                <connections>
-                                    <action selector="refreshPressed:" destination="W7b-bu-fLs" id="5Gr-d5-MVQ"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="pin" id="XWj-F3-ADm">
-                                <connections>
-                                    <action selector="postInfoPressed:" destination="W7b-bu-fLs" id="vED-eM-wvR"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <tabBarItem key="tabBarItem" title="List" image="list" id="Ied-KR-pTv"/>
+                    <navigationItem key="navigationItem" id="al2-J3-FXT"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="abv-5g-j6g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1927" y="-57"/>
+            <point key="canvasLocation" x="1266" y="64"/>
         </scene>
         <!--Information PostingVC-->
         <scene sceneID="xK5-FV-dCe">
@@ -347,59 +340,42 @@
         <!--On The Map-->
         <scene sceneID="RZ4-H9-LAE">
             <objects>
-                <tabBarController storyboardIdentifier="OTMTabController" id="C5f-cn-OFG" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="On The Map" id="W1H-gX-R3C"/>
+                <tabBarController id="C5f-cn-OFG" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="On The Map" id="W1H-gX-R3C">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="iuR-41-3Vt"/>
+                            <barButtonItem image="pin" id="Dlx-ow-gjX"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="pAn-LM-plk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="2ya-3P-lql" kind="relationship" relationship="viewControllers" id="Uco-6m-CNh"/>
-                        <segue destination="GO1-bc-Nye" kind="relationship" relationship="viewControllers" id="lQR-Q7-3xs"/>
+                        <segue destination="CNH-Vp-4ff" kind="relationship" relationship="viewControllers" id="faQ-7e-slV"/>
+                        <segue destination="W7b-bu-fLs" kind="relationship" relationship="viewControllers" id="6Ib-El-caS"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eIg-va-8OE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="319" y="342"/>
         </scene>
-        <!--List-->
-        <scene sceneID="lFE-Qu-wBE">
+        <!--Navigation Controller-->
+        <scene sceneID="yi5-oi-OXM">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GO1-bc-Nye" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" image="list" id="Irn-a6-q4Y"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Jf-hS-9Xs">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rQH-Kb-tbg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="OTMTabController" id="XUm-xn-nR7" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dTk-dR-Dl2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="W7b-bu-fLs" kind="relationship" relationship="rootViewController" id="1G2-9e-bWN"/>
+                        <segue destination="C5f-cn-OFG" kind="relationship" relationship="rootViewController" id="ood-O0-Ezn"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gzK-Zx-qRZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1115" y="-57"/>
-        </scene>
-        <!--Map-->
-        <scene sceneID="plh-8x-XB2">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2ya-3P-lql" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" image="map" id="Hg0-7u-c42"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Aor-VE-CD9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="CNH-Vp-4ff" kind="relationship" relationship="rootViewController" id="wmg-bm-KZ1"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aYi-47-REy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1073" y="672"/>
+            <point key="canvasLocation" x="-432" y="1025"/>
         </scene>
     </scenes>
     <resources>
