@@ -9,7 +9,7 @@
 import UIKit
 import MapKit 
 
-class InformationPostingVC: UIViewController {
+class InformationPostingVC: UIViewController, UITextFieldDelegate {
 
 
     @IBOutlet weak var submitButton: UIButton!
@@ -18,18 +18,23 @@ class InformationPostingVC: UIViewController {
     @IBOutlet weak var findLocationButton: UIButton!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var promptLabel: UILabel!
-    @IBOutlet weak var locationTextField: UITextView!
+    @IBOutlet weak var locationTextField: UITextField!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        locationTextField.delegate = self
+        webAdressField.delegate = self
 
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         promptLabel.text = "Where are you\n studying\n today?"
+        locationTextField.text = "Enter location"
+        locationTextField.tag = 0
+        webAdressField.text = "Enter a link to Share Here"
+        webAdressField.tag = 1
         UdacityClient.sharedInstance().getUserData()
     }
     
@@ -42,13 +47,11 @@ class InformationPostingVC: UIViewController {
         localSearch.startWithCompletionHandler { (response, error) -> Void in
             
             if response == nil {
-                let controller = UIAlertController(title: nil, message: "Location Not Found", preferredStyle: .Alert)
-                controller.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: nil))
-                self.presentViewController(controller, animated: true, completion: nil)
+                self.sendAlert("Location Not Found")
                 return
             }
             
-            User.mapString = self.locationTextField.text
+            User.mapString = self.locationTextField.text!
             
             let pointAnnotation = MKPointAnnotation()
             pointAnnotation.title = self.locationTextField.text
@@ -75,10 +78,17 @@ class InformationPostingVC: UIViewController {
             print("Submitted")
             if success {
                 self.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                self.sendAlert("Failed to post location")
             }
         }
     }
     
+    func sendAlert(message: String) {
+        let controller = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+        controller.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: nil))
+        presentViewController(controller, animated: true, completion: nil)
+    }
  
     
     private func showMap() {
@@ -96,6 +106,25 @@ class InformationPostingVC: UIViewController {
         mapView.hidden = false
         
     }
+    
+    // MARK: TextField
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.text = ""
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        if textField.text == "" {
+            textField.text = "Enter link to share"
+        }
+    }
+    
+    
     
 
 }
