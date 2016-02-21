@@ -4,7 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--LoginVC-->
@@ -346,12 +345,7 @@
         <scene sceneID="RZ4-H9-LAE">
             <objects>
                 <tabBarController id="C5f-cn-OFG" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="On The Map" id="W1H-gX-R3C">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="iuR-41-3Vt"/>
-                            <barButtonItem image="pin" id="Dlx-ow-gjX"/>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="On The Map" id="W1H-gX-R3C"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="pAn-LM-plk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

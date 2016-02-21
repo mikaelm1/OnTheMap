@@ -18,12 +18,39 @@ class MapVC: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupButtons()
         
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         mapView.delegate = self
+        loadStudents()
+    }
+    
+    private func setupButtons() {
+        let logoutButton = UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: "logout")
+        parentViewController?.navigationItem.leftBarButtonItem = logoutButton
+        
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshButtonPressed")
+        let postInfoButton = UIBarButtonItem(image: UIImage(named: "pin"), style: .Plain, target: self, action: "postInfoButtonPressed")
+        parentViewController?.navigationItem.setRightBarButtonItems([refreshButton, postInfoButton], animated: true)
+    }
+    
+    func logout() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func refreshButtonPressed() {
+        loadStudents()
+    }
+    
+    func postInfoButtonPressed() {
+        let controller = storyboard?.instantiateViewControllerWithIdentifier("InformationPostingVC") as UIViewController!
+        presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    func loadStudents() {
         ParseClient.sharedInstance().getStudentLocations { (result, error) -> Void in
             
             if let students = result {
@@ -38,7 +65,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
         }
     }
     
-
+    // MARK: Map methods
     
     private func pinLocations(students: [Student]) {
         
@@ -86,14 +113,5 @@ class MapVC: UIViewController, MKMapViewDelegate {
         
     }
 
-
-    @IBAction func postInfoPressed(sender: AnyObject) {
-        let controller = storyboard?.instantiateViewControllerWithIdentifier("InformationPostingVC") as UIViewController!
-        presentViewController(controller, animated: true, completion: nil)
-    }
-    
-    @IBAction func refreshPressed(sender: AnyObject) {
-        //getStudentLocations()
-    }
 
 }
