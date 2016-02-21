@@ -12,7 +12,7 @@ class UdacityClient {
     
     var session = NSURLSession.sharedSession()
     
-    func getSession(username: String, password: String, completionHandlerForLogin: (success: Bool, error: NSError?) -> Void) {
+    func getSession(username: String, password: String, completionHandlerForLogin: (success: Bool, error: String?) -> Void) {
         
         let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
         request.HTTPMethod = "POST"
@@ -25,8 +25,7 @@ class UdacityClient {
             
             func sendError(error: String) {
                 print(error)
-                let userInfo = [NSLocalizedDescriptionKey: error]
-                completionHandlerForLogin(success: false, error: NSError(domain: "getSession", code: 1, userInfo: userInfo))
+                completionHandlerForLogin(success: false, error: "\(error)")
             }
             
             guard (error == nil) else {
@@ -35,7 +34,7 @@ class UdacityClient {
             }
             
             guard let data = data?.subdataWithRange(NSMakeRange(5, (data?.length)! - 5)) else {
-                print("NO data was returned by the request")
+                sendError("No data was returned by the request")
                 return
             }
             
@@ -43,7 +42,7 @@ class UdacityClient {
             do {
                 parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
             } catch {
-                print("Could not parse the data as JSON")
+                sendError("Could not parse the data as JSON")
                 return
             }
             
