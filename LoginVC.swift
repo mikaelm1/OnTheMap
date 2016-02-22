@@ -19,8 +19,6 @@ class LoginVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        usernameTextField.text = "mm132017@yahoo.com"
-        passwordTextField.text = "Viking27"
 
     }
     

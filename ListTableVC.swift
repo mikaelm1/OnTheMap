@@ -63,7 +63,7 @@ class ListTableVC: UITableViewController {
     }
     
     func postInfoButtonPressed() {
-        let controller = storyboard?.instantiateViewControllerWithIdentifier("InformationPostingVC") as UIViewController!
+        let controller = storyboard?.instantiateViewControllerWithIdentifier("InfoPostingVC") as UIViewController!
         presentViewController(controller, animated: true, completion: nil)
     }
 
