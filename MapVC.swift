@@ -29,7 +29,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
     }
     
     private func setupButtons() {
-        let logoutButton = UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: "logout")
+        let logoutButton = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: "logout")
         parentViewController?.navigationItem.leftBarButtonItem = logoutButton
         
         let refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshButtonPressed")
