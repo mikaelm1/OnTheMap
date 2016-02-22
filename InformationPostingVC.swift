@@ -25,7 +25,6 @@ class InformationPostingVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         locationTextField.delegate = self
         webAdressField.delegate = self
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -38,6 +37,10 @@ class InformationPostingVC: UIViewController, UITextFieldDelegate {
         UdacityClient.sharedInstance().getUserData()
     }
     
+
+    @IBAction func cancelButtonPressed(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
     @IBAction func findLocationPressed(sender: AnyObject) {
         
@@ -102,6 +105,7 @@ class InformationPostingVC: UIViewController, UITextFieldDelegate {
         
         submitButton.enabled = true
         submitButton.hidden = false
+        
         
         mapView.hidden = false
         
