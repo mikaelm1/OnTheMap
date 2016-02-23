@@ -15,7 +15,7 @@ class ParseClient {
     // getStudentLocations
     func getStudentLocations(completionHandlerForStudentLocations: (result: [Student]?, error: String?) -> Void) {
         
-        let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation?limit=100")!)
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation?limit=100&order=-updatedAt")!)
         
         request.addValue(Constants.Parse.applicationID, forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue(Constants.Parse.APIKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
@@ -53,6 +53,7 @@ class ParseClient {
             //print(locations)
             
             let students = Student.studentsFromResults(locations)
+            
             completionHandlerForStudentLocations(result: students, error: nil)
             
         // end of closure
@@ -99,7 +100,7 @@ class ParseClient {
                 sendError("Not posted successfully")
                 return
             }
-            //print(success)
+            print(success)
             completionHandlerForPostStudent(success: true)
 
             // end of closure

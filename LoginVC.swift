@@ -43,10 +43,16 @@ class LoginVC: UIViewController {
                     performUIUpdatesOnMain({ () -> Void in
                         self.completeLogin()
                     })
-                } else {
+                } else if error == "The Internet connection appears to be offline." {
                     performUIUpdatesOnMain({ () -> Void in
                         self.setUIEnabled(true)
-                        self.sendAlert("Invalid username or password")
+                        self.sendAlert(error!)
+                    })
+                    
+                }else {
+                    performUIUpdatesOnMain({ () -> Void in
+                        self.setUIEnabled(true)
+                        self.sendAlert("Invalid password or username")
                     })
                     
                 }

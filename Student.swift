@@ -16,6 +16,8 @@ struct Student {
     let latitude: Double
     let longitude: Double
     
+    static var students = [Student]()
+    
     init(result: [String: AnyObject]) {
         firstName = result["firstName"] as! String
         lastName = result["lastName"] as! String
@@ -30,7 +32,6 @@ struct Student {
     }
     
     static func studentsFromResults(results: [[String: AnyObject]]) -> [Student] {
-        var students = [Student]()
         
         for result in results {
             students.append(Student(result: result))

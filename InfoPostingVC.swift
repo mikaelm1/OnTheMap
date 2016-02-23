@@ -117,7 +117,10 @@ class InfoPostingVC: UIViewController, UITextFieldDelegate {
                     self.state = "Location"
                     self.dismissViewControllerAnimated(true, completion: nil)
                 } else {
-                    self.sendAlert("Failed to post location")
+                    performUIUpdatesOnMain({ () -> Void in
+                        self.sendAlert("Failed to post location")
+                    })
+                    
                 }
             }
         }
@@ -133,6 +136,8 @@ class InfoPostingVC: UIViewController, UITextFieldDelegate {
         localSearch.startWithCompletionHandler { (response, error) -> Void in
             
             if response == nil {
+                self.activityIndicator.alpha = 0.0
+                self.activityIndicator.stopAnimating()
                 self.sendAlert("Location Not Found")
                 return
             }

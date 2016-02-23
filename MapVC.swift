@@ -14,7 +14,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var mapView: MKMapView!
     
-    var students = [Student]()
+    //var students = [Student]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +58,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
         ParseClient.sharedInstance().getStudentLocations { (result, error) -> Void in
             
             if let students = result {
-                self.students = students
+                //self.students = students
                 performUIUpdatesOnMain({ () -> Void in
                     self.pinLocations(students)
                 })

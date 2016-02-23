@@ -25,11 +25,11 @@ class UdacityClient {
             
             func sendError(error: String) {
                 print(error)
-                completionHandlerForLogin(success: false, error: "\(error)")
+                completionHandlerForLogin(success: false, error: error)
             }
             
             guard (error == nil) else {
-                sendError("\(error)")
+                sendError("\(error!.localizedDescription)")
                 return
             }
             

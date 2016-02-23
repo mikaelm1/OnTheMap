@@ -11,7 +11,7 @@ import UIKit
 class ListTableVC: UITableViewController {
     
     var locations: [[String: AnyObject]]!
-    var students = [Student]()
+    //var students = [Student]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class ListTableVC: UITableViewController {
     private func loadStudents() {
         ParseClient.sharedInstance().getStudentLocations { (result, error) -> Void in
             if let students = result {
-                self.students = students
+                //self.students = students
                 performUIUpdatesOnMain({ () -> Void in
                     self.tableView.reloadData()
                 })
@@ -74,13 +74,13 @@ class ListTableVC: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return students.count
+        return Student.students.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //print("cellForRowAtIndexPath")
-        if students.count > 0 {
-            let student = students[indexPath.row]
+        if Student.students.count > 0 {
+            let student = Student.students[indexPath.row]
             let cell = tableView.dequeueReusableCellWithIdentifier("PinCell") as UITableViewCell!
             cell.textLabel!.text = "\(student.firstName) \(student.lastName)"
             cell.detailTextLabel?.text = "\(student.mediaUrl)"
@@ -93,7 +93,7 @@ class ListTableVC: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let student = students[indexPath.row]
+        let student = Student.students[indexPath.row]
         
         let app = UIApplication.sharedApplication()
         app.openURL(NSURL(string: student.mediaUrl)!)
